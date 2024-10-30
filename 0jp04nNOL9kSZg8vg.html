@@ -1,0 +1,187 @@
+<html><head><base href="https://fluent-bible.com" target="_blank"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>쉬운 성경 해설</title>
+<style>
+:root {
+  --primary: #2C3E50;
+  --secondary: #ECF0F1;
+  --accent: #E74C3C;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+body {
+  background: var(--secondary);
+  color: var(--primary);
+  line-height: 1.6;
+}
+
+header {
+  background: var(--primary);
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
+
+nav {
+  background: white;
+  padding: 1rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: 2rem;
+}
+
+nav a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: var(--accent);
+}
+
+.content {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.bible-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.verse {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.explanation {
+  background: #f9f9f9;
+  padding: 1rem;
+  border-left: 4px solid var(--accent);
+  margin-top: 1rem;
+}
+
+button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: var(--accent);
+}
+
+@media (max-width: 600px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <h1>쉬운 성경 해설</h1>
+    <p>누구나 이해할 수 있는 성경 말씀</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="https://fluent-bible.com/old-testament">구약성경</a></li>
+      <li><a href="https://fluent-bible.com/new-testament">신약성경</a></li>
+      <li><a href="https://fluent-bible.com/daily">오늘의 말씀</a></li>
+      <li><a href="https://fluent-bible.com/study">성경공부</a></li>
+    </ul>
+  </nav>
+
+  <div class="content">
+    <div class="bible-section">
+      <h2>오늘의 말씀</h2>
+      <div class="verse">
+        <h3>요한복음 3:16</h3>
+        <p>"하나님이 세상을 이처럼 사랑하사 독생자를 주셨으니 이는 그를 믿는 자마다 멸망하지 않고 영생을 얻게 하려 하심이라"</p>
+        <div class="explanation">
+          <h4>쉬운 해설</h4>
+          <p>이 구절은 하나님의 크신 사랑을 보여줍니다. 하나님께서는 우리를 너무나 사랑하셔서 자신의 하나뿐인 아들을 이 세상에 보내주셨습니다. 우리가 예수님을 믿으면 영원한 생명을 얻을 수 있다는 의미입니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bible-section">
+      <h2>추천 성경 구절</h2>
+      <div id="recommended-verses">
+        <!-- 동적으로 추가될 내용 -->
+      </div>
+      <button onclick="loadMoreVerses()">더 보기</button>
+    </div>
+  </div>
+
+<script>
+const verses = [
+  {
+    reference: "시편 23:1",
+    text: "여호와는 나의 목자시니 내가 부족함이 없으리로다",
+    explanation: "하나님께서 우리를 돌보시고 필요한 모든 것을 채워주신다는 의미입니다."
+  },
+  {
+    reference: "잠언 3:5-6",
+    text: "너는 마음을 다하여 여호와를 신뢰하고 네 명철을 의지하지 말라",
+    explanation: "우리의 판단이 아닌 하나님을 전적으로 신뢰하라는 가르침입니다."
+  },
+  {
+    reference: "빌립보서 4:13",
+    text: "내게 능력 주시는 자 안에서 내가 모든 것을 할 수 있느니라",
+    explanation: "하나님께서 주시는 힘으로 모든 어려움을 이겨낼 수 있다는 말씀입니다."
+  }
+];
+
+let currentVerseIndex = 0;
+
+function loadMoreVerses() {
+  if (currentVerseIndex < verses.length) {
+    const verse = verses[currentVerseIndex];
+    const verseElement = document.createElement('div');
+    verseElement.className = 'verse';
+    verseElement.innerHTML = `
+      <h3>${verse.reference}</h3>
+      <p>${verse.text}</p>
+      <div class="explanation">
+        <h4>쉬운 해설</h4>
+        <p>${verse.explanation}</p>
+      </div>
+    `;
+    document.getElementById('recommended-verses').appendChild(verseElement);
+    currentVerseIndex++;
+  }
+  
+  if (currentVerseIndex >= verses.length) {
+    document.querySelector('button').style.display = 'none';
+  }
+}
+
+// 초기 구절 로드
+loadMoreVerses();
+</script>
+</body></html>
